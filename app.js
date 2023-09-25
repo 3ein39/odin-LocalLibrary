@@ -4,11 +4,20 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-
+require('dotenv').config()
 const index = require('./routes/index');
 const users = require('./routes/users');
 
 const app = express();
+
+const createRequire = require('module').createRequire;
+
+const mongoose = require('mongoose');
+mongoose.set("strictQuery", false);
+
+mongoose.connect(`mongodb+srv://3ein39:${process.env.MONGODB_PASSWORD}@library.hkvky8v.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp`)
+    .then(() => console.log('Connected!'));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
