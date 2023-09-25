@@ -17,11 +17,22 @@ app.set('view engine', 'ejs');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
+
+// The following line is the one that allows us to parse the request body
+// (which is what we need to be able to read the contents of the form)
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(cookieParser());
+
+/** The following line is the one that allows us to serve static files
+ *  (like CSS and JS files) from the public folder.
+ */
 app.use(express.static(path.join(__dirname, 'public')));
 
+// The following lines are the ones that allow us to use the routes we defined
+// the paths are treated as prefixes to the paths defined in the routes
+// i.e /users/ will be the prefix for all the routes defined in the users.js file
 app.use('/', index);
 app.use('/users', users);
 
