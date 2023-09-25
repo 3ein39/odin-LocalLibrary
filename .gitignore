@@ -1,0 +1,26 @@
+# Dependency directories
+node_modules/
+
+# Generated application files
+*.log
+*.env
+
+# OS or Editor-specific files
+.idea/
+*.swp
+
+# Environment variables
+.env.local
+.env.dev
+.env.test
+.env.prod
+
+# Node.js debugging files
+inspect.log
+
+# Yarn Integrity file
+
+# npm Debug Log
+npm-debug.log*
+
+# Unit test reports
