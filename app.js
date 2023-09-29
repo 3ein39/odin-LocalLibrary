@@ -15,7 +15,7 @@ const createRequire = require('module').createRequire;
 const mongoose = require('mongoose');
 mongoose.set("strictQuery", false);
 
-mongoose.connect(`mongodb+srv://3ein39:${process.env.MONGODB_PASSWORD}@library.hkvky8v.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp`)
+mongoose.connect(`mongodb+srv://3ein39:${process.env.MONGODB_PASSWORD}@cluster0.f9pyyaf.mongodb.net/?retryWrites=true&w=majority`)
     .then(() => console.log('Connected!'));
 
 
