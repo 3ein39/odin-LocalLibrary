@@ -5,8 +5,9 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 require('dotenv').config()
-const index = require('./routes/index');
-const users = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const catalogRouter = require('./routes/catalog');  //Import routes for "catalog" area of site
 
 const app = express();
 
@@ -42,8 +43,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // The following lines are the ones that allow us to use the routes we defined
 // the paths are treated as prefixes to the paths defined in the routes
 // i.e /users/ will be the prefix for all the routes defined in the users.js file
-app.use('/', index);
-app.use('/users', users);
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use("/catalog", catalogRouter); // Add catalog routes to middleware chain.
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
