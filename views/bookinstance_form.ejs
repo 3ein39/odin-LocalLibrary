@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2">
+            <block class="sidebar">
+                <ul class="sidebar-nav">
+                    <li>
+                        <a href="/catalog">Home</a>
+                    </li>
+                    <li>
+                        <a href="/catalog/books">All books</a>
+                    </li>
+                    <li>
+                        <a href="/catalog/authors">All authors</a>
+                    </li>
+                    <li>
+                        <a href="/catalog/genres">All genres</a>
+                    </li>
+                    <li>
+                        <a href="/catalog/bookinstances">All book-instances</a>
+                    </li>
+                    <hr>
+                    <li>
+                        <a href="/catalog/author/create">Create new author</a>
+                    </li>
+                    <li>
+                        <a href="/catalog/genre/create">Create new genre</a>
+                    </li>
+                    <li>
+                        <a href="/catalog/book/create">Create new book</a>
+                    </li>
+                    <li>
+                        <a href="/catalog/bookinstance/create">Create new book instance (copy)</a>
+                    </li>
+                </ul>
+            </block>
+        </div>
+        <div class="col-sm-10">
+            <block class="content">
+                    <h1><%= title %></h1>
+
+                    <form method="POST" action="">
+                        <div class="form-group">
+                            <label for="book">Book:</label>
+                            <select id="book" class="form-control" name="book" required="true">
+                                <% book_list.sort(function(a, b) { let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0; }); %>
+                                <% book_list.forEach(function(book) { %>
+                                    <option value="<%= book._id %>" <%= (selected_book === book._id.toString() ? 'selected' : '') %>> <%= book.title %> </option>
+                                <% }); %>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="imprint">Imprint:</label>
+                            <input id="imprint" class="form-control" type="text" placeholder="Publisher and date information" name="imprint" required="true" value="<%= (typeof bookinstance === 'undefined' ? '' : bookinstance.imprint) %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="due_back">Date when book available:</label>
+                            <input id="due_back" class="form-control" type="date" name="due_back" value="<%= (typeof bookinstance === 'undefined' ? '' : bookinstance.due_back_yyyy_mm_dd) %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status:</label>
+                            <select id="status" class="form-control" name="status" required="true">
+                                <option value="Maintenance" <%= (typeof bookinstance === 'undefined' || bookinstance.status !== 'Maintenance' ? '' : 'selected') %>>Maintenance</option>
+                                <option value="Available" <%= (typeof bookinstance === 'undefined' || bookinstance.status !== 'Available' ? '' : 'selected') %>>Available</option>
+                                <option value="Loaned" <%= (typeof bookinstance === 'undefined' || bookinstance.status !== 'Loaned' ? '' : 'selected') %>>Loaned</option>
+                                <option value="Reserved" <%= (typeof bookinstance === 'undefined' || bookinstance.status !== 'Reserved' ? '' : 'selected') %>>Reserved</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </form>
+
+                    <% if (errors) { %>
+                        <ul>
+                            <% errors.forEach(function(error) { %>
+                                <li><%= error.msg %></li>
+                            <% }); %>
+                        </ul>
+                    <% } %>
+            </block>
+        </div>
+    </div>
+</div>
+</body>
+</html>
