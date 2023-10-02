@@ -53,28 +53,32 @@
         </div>
         <div class="col-sm-10">
             <block class="content">
-                <h1><%= title %></h1>
-                <ul>
-                    <% if (bookinstance_list.length > 0) { %>
-                        <% bookinstance_list.forEach(function(val) { %>
-                            <li>
-                                <a href="<%= val.url %>"><%= val.book.title %> : <%= val.imprint %> - </a>
-                                <% if (val.status === 'Available') { %>
-                                    <span class="text-success"><%= val.status %></span>
-                                <% } else if (val.status === 'Maintenance') { %>
-                                    <span class="text-danger"><%= val.status %></span>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="mt-4"><%= title %></h1>
+                            <ul class="list-group">
+                                <% if (bookinstance_list.length > 0) { %>
+                                    <% bookinstance_list.forEach(function(val) { %>
+                                        <li class="list-group-item">
+                                            <a href="<%= val.url %>">
+                                                <%= val.book.title %> : <%= val.imprint %> -
+                                            </a>
+                                            <span class="<%= val.status === 'Available' ? 'text-success' : (val.status === 'Maintenance' ? 'text-danger' : 'text-warning') %>">
+                <%= val.status %>
+              </span>
+                                            <% if (val.status !== 'Available') { %>
+                                                <span class="ml-2">(Due: <%= val.due_back_formatted %>)</span>
+                                            <% } %>
+                                        </li>
+                                    <% }); %>
                                 <% } else { %>
-                                    <span class="text-warning"><%= val.status %></span>
+                                    <li class="list-group-item">There are no book copies in this library.</li>
                                 <% } %>
-                                <% if (val.status !== 'Available') { %>
-                                    <span>(Due: <%= val.due_back_formatted %>)</span>
-                                <% } %>
-                            </li>
-                        <% }); %>
-                    <% } else { %>
-                        <li>There are no book copies in this library.</li>
-                    <% } %>
-                </ul>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </block>
         </div>
     </div>
