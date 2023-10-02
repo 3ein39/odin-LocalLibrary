@@ -141,10 +141,66 @@ exports.author_delete_post = asyncHandler(async (req, res, next) => {
 });
 // Display Author update form on GET.
 exports.author_update_get = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Author update GET");
+    // Get details of author and all their books (in parallel)
+    const [author, allBooksByAuthor] = await Promise.all([
+        Author.findById(req.params.id).exec(),
+        Book.find({author: req.params.id}, "title summary").exec(),
+    ]);
+
+    if (author === null) {
+        // No results.
+        const err = new Error("Author not found");
+        err.status = 404;
+        return next(err);
+    }
+
+    res.render("author_form", {
+        title: "Update Author",
+        author: author,
+        author_books: allBooksByAuthor,
+        errors: []
+    });
 });
 
 // Handle Author update on POST.
 exports.author_update_post = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Author update POST");
+    // Get details of author and all their books (in parallel)
+    const [author, allBooksByAuthor] = await Promise.all([
+        Author.findById(req.params.id).exec(),
+        Book.find({author: req.params.id}, "title summary").exec(),
+    ]);
+
+    if (author === null) {
+        // No results.
+        const err = new Error("Author not found");
+        err.status = 404;
+        return next(err);
+    }
+
+    // Create Author object with escaped and trimmed data
+    const authorToUpdate = new Author({
+        first_name: req.body.first_name,
+        family_name: req.body.family_name,
+        date_of_birth: req.body.date_of_birth,
+        date_of_death: req.body.date_of_death,
+        _id: req.params.id
+    });
+
+    // update author in database
+    let updatedAuthor = await Author.findByIdAndUpdate(req.params.id, authorToUpdate, {});
+
+    if (!updatedAuthor) {
+        // There are errors. Render form again with sanitized values/errors messages.
+        res.render("author_form", {
+                title: "Update Author",
+                author: author,
+                author_books: allBooksByAuthor,
+                errors: errors.array(),
+            }
+        );
+    }
+    else {
+        // Data from form is valid. Redirect to new author record.
+        res.redirect(updatedAuthor.url);
+    }
 });
