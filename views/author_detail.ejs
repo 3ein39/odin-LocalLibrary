@@ -13,67 +13,79 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-2">
-            <block class="sidebar">
-                <ul class="sidebar-nav">
-                    <li>
+            <div class="sidebar">
+                <ul class="list-group">
+                    <li class="list-group-item bg-primary text-white">
+                        Navigation
+                    </li>
+                    <li class="list-group-item">
                         <a href="/catalog">Home</a>
                     </li>
-                    <li>
-                        <a href="/catalog/books">All books</a>
+                    <li class="list-group-item">
+                        <a href="/catalog/books">All Books</a>
                     </li>
-                    <li>
-                        <a href="/catalog/authors">All authors</a>
+                    <li class="list-group-item">
+                        <a href="/catalog/authors">All Authors</a>
                     </li>
-                    <li>
-                        <a href="/catalog/genres">All genres</a>
+                    <li class="list-group-item">
+                        <a href="/catalog/genres">All Genres</a>
                     </li>
-                    <li>
-                        <a href="/catalog/bookinstances">All book-instances</a>
+                    <li class="list-group-item">
+                        <a href="/catalog/bookinstances">All Book-instances</a>
                     </li>
-                    <hr>
-                    <li>
+                    <li class="list-group-item bg-primary text-white">
+                        Actions
+                    </li>
+                    <li class="list-group-item">
                         <a href="/catalog/author/create">Create new author</a>
                     </li>
-                    <li>
+                    <li class="list-group-item">
                         <a href="/catalog/genre/create">Create new genre</a>
                     </li>
-                    <li>
+                    <li class="list-group-item">
                         <a href="/catalog/book/create">Create new book</a>
                     </li>
-                    <li>
+                    <li class="list-group-item">
                         <a href="/catalog/bookinstance/create">Create new book instance (copy)</a>
                     </li>
                 </ul>
-            </block>
+            </div>
         </div>
         <div class="col-sm-10">
             <block class="content">
-                <h1>Author: <%= author.name %></h1>
-                <p><%= author.lifespan %></p>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h1 class="mt-4">Author: <%= author.name %></h1>
+                            <p><%= author.lifespan %></p>
 
-                <div style="margin-left: 20px; margin-top: 20px;">
-                    <h4>Books</h4>
+                            <div style="margin-left: 20px; margin-top: 20px;">
+                                <h4>Books</h4>
 
-                    <dl>
-                        <% if (author_books.length > 0) { %>
-                            <% author_books.forEach(function(book) { %>
-                                <dt>
-                                    <a href="<%= book.url %>"><%= book.title %></a>
-                                </dt>
-                                <dd><%= book.summary %></dd>
-                            <% }); %>
-                        <% } else { %>
-                            <p>This author has no books.</p>
-                        <% } %>
-                    </dl>
+                                <dl>
+                                    <% if (author_books.length > 0) { %>
+                                        <% author_books.forEach(function(book) { %>
+                                            <dt>
+                                                <a href="<%= book.url %>"><%= book.title %></a>
+                                            </dt>
+                                            <dd><%= book.summary %></dd>
+                                        <% }); %>
+                                    <% } else { %>
+                                        <p>This author has no books.</p>
+                                    <% } %>
+                                </dl>
+                            </div>
+                            <hr>
+                            <p>
+                                <a href="<%= author.url %>/delete" class="btn btn-danger">Delete author</a>
+                            </p>
+                            <p>
+                                <a href="<%= author.url %>/update" class="btn btn-primary">Update author</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <hr>
-                <p>
-                    <a href="<%= author.url %>/delete">Delete author</a>
-                </p>
-                <p>
-                    <a href="<%= author.url %>/update">Update author</a>
-                </p>
+
             </block>
         </div>
     </div>
