@@ -8,6 +8,7 @@ require('dotenv').config()
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const catalogRouter = require('./routes/catalog');  //Import routes for "catalog" area of site
+const helmet = require('helmet');
 
 const app = express();
 
@@ -27,6 +28,14 @@ app.set('view engine', 'ejs');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
+
+app.use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
+      },
+    }),
+);
 
 // The following line is the one that allows us to parse the request body
 // (which is what we need to be able to read the contents of the form)
