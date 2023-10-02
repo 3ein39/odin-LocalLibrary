@@ -53,19 +53,26 @@
         </div>
         <div class="col-sm-10">
             <block class="content">
-                <h1><%= title %></h1>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h1 class="mt-4"><%= title %></h1>
 
-                <ul>
-                    <% if (genre_list.length > 0) { %>
-                        <% genre_list.forEach(function(genre) { %>
-                            <li>
-                                <a href="<%= genre.url %>"><%= genre.name %></a>
-                            </li>
-                        <% }); %>
-                    <% } else { %>
-                        <li>There are no genres.</li>
-                    <% } %>
-                </ul>
+                            <ul class="list-group">
+                                <% if (genre_list.length > 0) { %>
+                                    <% genre_list.forEach(function(genre) { %>
+                                        <li class="list-group-item">
+                                            <a href="<%= genre.url %>"><%= genre.name %></a>
+                                        </li>
+                                    <% }); %>
+                                <% } else { %>
+                                    <li class="list-group-item">There are no genres.</li>
+                                <% } %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </block>
         </div>
     </div>

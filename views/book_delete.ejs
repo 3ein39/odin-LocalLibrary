@@ -52,31 +52,39 @@
             </div>
         </div>
         <div class="col-sm-10">
-            <block class="content">
-                <h1><%= title %>: <%= book.title %></h1>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h1 class="mt-4"><%= title %>: <%= book.title %></h1>
 
-                <% if (book_instances.length) { %>
-                    <p><strong>Delete the following instances before attempting to delete this book.</strong></p>
+                        <% if (book_instances.length) { %>
+                            <div class="alert alert-danger mt-4">
+                                <p><strong>Delete the following instances before attempting to delete this book:</strong></p>
 
-                    <div style="margin-left: 20px; margin-top: 20px;">
-                        <h4>Books</h4>
-                        <dl>
-                            <% book_instances.forEach(function(instance) { %>
-                                <dt><a href="<%= instance.url %>"><%= instance.due_back_formatted %></a></dt>
-                            <% }); %>
-                        </dl>
+                                <div style="margin-left: 20px; margin-top: 20px;">
+                                    <h4>Books</h4>
+                                    <dl>
+                                        <% book_instances.forEach(function(instance) { %>
+                                            <dt><a href="<%= instance.url %>"><%= instance.due_back_formatted %></a></dt>
+                                        <% }); %>
+                                    </dl>
+                                </div>
+                            </div>
+                        <% } else { %>
+                            <div class="alert alert-warning mt-4">
+                                <p>Do you really want to delete this Book?</p>
+
+                                <form method="POST" action="">
+                                    <div class="form-group">
+                                        <input id="bookid" class="form-control" type="hidden" name="bookid" required="true" value="<%= book._id %>">
+                                    </div>
+                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                </form>
+                            </div>
+                        <% } %>
                     </div>
-                <% } else { %>
-                    <p>Do you really want to delete this Book?</p>
-
-                    <form method="POST" action="">
-                        <div class="form-group">
-                            <input id="bookid" class="form-control" type="hidden" name="bookid" required="true" value="<%= book._id %>">
-                        </div>
-                        <button class="btn btn-primary" type="submit">Delete</button>
-                    </form>
-                <% } %>
-
+                </div>
+            </div>
             </block>
         </div>
     </div>
