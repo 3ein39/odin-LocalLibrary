@@ -2,25 +2,30 @@
 
 This project serves as a practice ground for learning and experimenting with the Mongoose ODM (Object Data Modeling), MongoDB, and Express.js. It also demonstrates the use of the Express Application Generator tool for quickly setting up an Express application.
 
-## Project Overview
+## Table of Contents
 
-The **LocalLibrary Express Practice Project** is designed to help developers improve their skills in building web applications using popular technologies:
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
 
-- **Express.js**: A fast, unopinionated web framework for Node.js.
-- **Mongoose**: An elegant MongoDB object modeling tool.
-- **MongoDB**: A NoSQL database for storing and managing data.
+## Features
 
-## Functionalities
+- Browse and search for books in the library.
+- View detailed information about each book.
 
-This project focuses on the following key functionalities:
+## Technologies Used
 
-1. **Library Catalog**: It simulates a basic library catalog, where users can:
-   - Browse available books.
-   - View book details, including title, author, and availability.
+- **Node.js**: A runtime environment for executing JavaScript code server-side.
+- **Express.js**: A web application framework for building web applications in Node.js.
+- **MongoDB**: A NoSQL database for storing application data.
+- **Mongoose**: An Object Data Modeling (ODM) library for MongoDB and Node.js.
+- **EJS**: A templating engine for rendering views.
+- **HTML/CSS**: For creating the website's frontend.
+- **Bootstrap**: A popular CSS framework for building responsive web design.
+- **JavaScript**: The programming language used for both client-side and server-side scripting.
 
-2. **Express Application Generator**: The project is scaffolded using the Express Application Generator, which provides a starting point for an Express.js application.
 
-## Getting Started
+## Installation
 
 To get started with this project, follow these steps:
 
@@ -34,5 +39,3 @@ To get started with this project, follow these steps:
 
 This project idea is inspired by the [MDN Web Docs Local Library Tutorial](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Tutorial_local_library_website). We extend our gratitude to MDN for providing a valuable resource for learning and practicing web development with Express and related technologies.
 
-
-This project is open-source and available under the [License Name] license. See the [LICENSE.md](LICENSE.md) file for details.
