@@ -13,7 +13,12 @@ const helmet = require('helmet');
 const app = express();
 
 const createRequire = require('module').createRequire;
-
+// Set up rate limiter: maximum of twenty requests per minute
+const RateLimit = require("express-rate-limit");
+const limiter = RateLimit({
+    windowMs: 1 * 60 * 1000, // 1 minute
+    max: 20,
+});
 const mongoose = require('mongoose');
 mongoose.set("strictQuery", false);
 
@@ -36,6 +41,8 @@ app.use(
       },
     }),
 );
+
+app.use(limiter);
 
 // The following line is the one that allows us to parse the request body
 // (which is what we need to be able to read the contents of the form)
