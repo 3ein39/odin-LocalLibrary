@@ -1,5 +1,8 @@
 # LocalLibrary Express Practice Project
 
+![image](https://github.com/3ein39/odin-LocalLibrary/assets/37001450/6d926f6b-09b4-4d67-aa85-c157872ee33b)
+
+
 This project serves as a practice ground for learning and experimenting with the Mongoose ODM (Object Data Modeling), MongoDB, and Express.js. It also demonstrates the use of the Express Application Generator tool for quickly setting up an Express application.
 
 ## Table of Contents
