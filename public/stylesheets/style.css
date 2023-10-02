@@ -1,39 +1,124 @@
+/* Define dark mode colors as CSS variables */
+:root {
+  --bg-color: #0d1117; /* Background color */
+  --text-color: #c9d1d9; /* Text color */
+  --link-color: #58a6ff; /* Link color */
+  --list-color: #c9d1d9; /* List item color */
+  --success-color: #6bc46d; /* Success color */
+  --danger-color: #d73a49; /* Danger color */
+  --warning-color: #e3b341; /* Warning color */
+}
+
 /* Sidebar Navigation */
 .sidebar-nav {
   margin-top: 20px;
   padding: 0;
   list-style: none;
+  background-color: var(--bg-color); /* Use the dark background color */
+  color: var(--text-color); /* Use the dark text color */
 }
 
 /* Body Padding */
 body {
   padding-top: 60px;
+  background-color: var(--bg-color); /* Use the dark background color */
+  color: var(--text-color); /* Use the dark text color */
 }
 
 /* Heading 1 (H1) */
 h1 {
-  color: #007BFF;
-  font-size: 24px; /* Increase the font size for H1 */
-  margin-bottom: 20px; /* Add spacing below H1 */
+  color: var(--link-color); /* Use the link color */
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 /* Paragraphs (P) */
 p {
   font-size: 18px;
   line-height: 1.6;
-  margin-bottom: 10px; /* Add spacing below paragraphs */
+  margin-bottom: 10px;
 }
 
 /* Unordered Lists (UL) */
 ul {
   list-style-type: disc;
   padding-left: 20px;
-  margin-bottom: 20px; /* Add spacing below unordered lists */
+  margin-bottom: 20px;
+  color: var(--list-color); /* Use the list item color */
 }
 
 /* List Items (LI) */
 li {
-  margin-bottom: 5px; /* Add spacing between list items */
+  margin-bottom: 5px;
 }
 
 /* Add more custom styles as needed */
+/* Override Bootstrap styles for the sidebar */
+.sidebar {
+  background-color: var(--bg-color); /* Use the dark background color */
+  color: var(--text-color); /* Use the dark text color */
+  border-right: 1px solid #30363d; /* Add a border for separation */
+}
+
+/* Override Bootstrap styles for cards */
+.card {
+  background-color: var(--bg-color); /* Use the dark background color */
+  color: var(--text-color); /* Use the dark text color */
+  border: 1px solid #30363d; /* Add a border for separation */
+}
+
+/* Style for card headers (if needed) */
+.card-header {
+  background-color: var(--bg-color); /* Use the dark background color */
+  color: var(--text-color); /* Use the dark text color */
+}
+
+/* Style for card titles (if needed) */
+.card-title {
+  color: var(--link-color); /* Use the link color */
+}
+
+/* Style for card links (if needed) */
+.card-link {
+  color: var(--link-color); /* Use the link color */
+}
+
+/* Add more custom styles as needed */
+/* Override Bootstrap styles for list group and list group items */
+.list-group {
+  background-color: var(--bg-color); /* Use the dark background color */
+  color: var(--text-color); /* Use the dark text color */
+  border: 1px solid #30363d; /* Add a border for separation */
+}
+
+.list-group-item {
+  background-color: var(--bg-color); /* Use the dark background color */
+  color: var(--text-color); /* Use the dark text color */
+  border: none; /* Remove the default list item border */
+}
+
+/* Style for list group links */
+.list-group-item a {
+  color: var(--link-color); /* Use the link color */
+}
+
+/* Style for active list group items (if needed) */
+.list-group-item.active {
+  background-color: #161b22; /* Adjust active item background color */
+}
+
+/* Add more custom styles as needed */
+.list-group-item:hover {
+  background-color: #161b22; /* Darken the background color on hover */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a subtle shadow on hover */
+}
+/* Style for active list group items (if needed) */
+.list-group-item.active {
+  background-color: #161b22; /* Adjust active item background color */
+}
+/* Style for list group links */
+.list-group-item a {
+  color: var(--link-color); /* Use the link color */
+  text-decoration: none; /* Remove the default link underline */
+  transition: text-decoration 0.3s ease; /* Add a smooth transition for text-decoration */
+}
